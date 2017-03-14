@@ -10,6 +10,9 @@ namespace ApiVersion.Api.V1_0_0.Models
     /// </summary>
     public class ProductOutput: Base.Models.ProductOutput
     {
+        /// <summary>
+        /// 产品图片
+        /// </summary>
         public string img { get; set; }        
     }
     

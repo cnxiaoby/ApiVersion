@@ -1,5 +1,4 @@
-﻿using ApiVersion.Api.V1_0_0.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,30 +6,48 @@ using System.Web.Mvc;
 
 namespace ApiVersion.Api.V1_0_0.Controllers
 {
+    /// <summary>
+    /// 继承 Base Default 业务的接口 v1.0.0
+    /// </summary>
     [Api(DisableAuthorize = true)]
     public class DefaultController : Base.Controllers.DefaultController
     {
-        public override ApiResult Index()
+        /// <summary>
+        /// 业务 Index
+        /// </summary>
+        /// <returns></returns>
+        [VersionActionSelector]
+        public new ApiResult Index()
         {
-            return Success(new { name= "这里是 V1.0.0 API" });
+            return Success(new { name = "这里是 v1.0.0 API Index" });
         }
 
+        /// <summary>
+        /// 业务 Test
+        /// </summary>
+        /// <returns></returns>
         [Api(Invalidation = true)]
-        public override ApiResult Old()
+        [VersionActionSelector]
+        public new ApiResult Test()
         {
-            return Success(new { name = "这是过期的API，客户端访问不到，只有父类才可以访问" });
+            return Success(new { name = "这里是 v1.0.0 API Test" });
         }
 
-        public override ApiResult Prodeuct(int id)
+        /// <summary>
+        /// 获取制定产品信息
+        /// </summary>
+        /// <param name="id">产品id</param>
+        /// <returns></returns>
+        [VersionActionSelector]
+        public new ApiResult<V1_0_0.Models.ProductOutput> Prodeuct(int id)
         {
-            ApiResult result = base.Prodeuct(id);
-            Base.Models.ProductOutput outputOld = result.data as Base.Models.ProductOutput;
+            var output = new V1_0_0.Models.ProductOutput();
+            output.id = id;
+            output.name = "v1.0.0 产品" + id;
+            output.categoryName = "分类";
+            output.img = "http://www.test.com/img.png";
 
-            V1_0_0.Models.ProductOutput output = outputOld.ConvertTo<V1_0_0.Models.ProductOutput>();
-
-            output.img = "图片";
-
-            return Success(output);
+            return SuccessFor(output);
         }
     }
 }

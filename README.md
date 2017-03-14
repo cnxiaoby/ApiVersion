@@ -42,3 +42,10 @@
 	v2.0   版本是继承 v1.1 版本开发的，并关闭业务服务A，增加特有业务B，而用户使用v1.1版本的时候业务服务A仍然可用
 	......
 
+
+更新记录
+=========
+
+2017-03-14
+*	增加 HelpPage 接口描述文档，访问地址：http://localhost:81/help
+*	增加[VersionActionNameSelector]特性，修复同名方法覆盖（new），修复异常：“对控制器类型“DefaultController”的操作“index”的当前请求在下列操作方法之间不明确”

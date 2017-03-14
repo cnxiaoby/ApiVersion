@@ -5,6 +5,9 @@ using System.Web;
 
 namespace ApiVersion.Api
 {
+    /// <summary>
+    /// Api 特性描述
+    /// </summary>
     public class ApiAttribute : Attribute
     {
         /// <summary>

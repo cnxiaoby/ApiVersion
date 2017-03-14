@@ -18,8 +18,8 @@ namespace ApiVersion.Api
         public ApiResult Error(int code, string msg)
         {
             ApiResult result = new ApiResult();
-            result.errcode = code;
-            result.errmsg = msg;
+            result.code = code;
+            result.msg = msg;
             return result;
         }
 
@@ -49,7 +49,7 @@ namespace ApiVersion.Api
         public ApiResult Success(object data)
         {
             ApiResult result = new ApiResult();
-            result.errcode = 0;
+            result.code = 0;
             result.data = data;
             return result;
         }
@@ -57,6 +57,20 @@ namespace ApiVersion.Api
         {
             return Success(new object());
         }
+
+        /// <summary>
+        /// 请求成功
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public ApiResult<T> SuccessFor<T>(T data) where T : class
+        {
+            ApiResult<T> result = new ApiResult<T>();
+            result.code = 0;
+            result.data = data;
+            return result;
+        }
+
         /// <summary>
         /// 请求到达，首先进行授权判断
         /// </summary>

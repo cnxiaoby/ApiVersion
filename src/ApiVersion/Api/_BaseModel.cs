@@ -7,8 +7,11 @@ using System.Web;
 
 namespace ApiVersion.Api
 {
+    /// <summary>
+    /// 实体基类
+    /// </summary>
     [Serializable]
-    public class BaseModel
+    public abstract class BaseModel
     {
         /// <summary>
         /// 将对象的属性值赋值给为具有相同属性名称的其它对象

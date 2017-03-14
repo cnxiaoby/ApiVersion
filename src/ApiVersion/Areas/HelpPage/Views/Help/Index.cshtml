@@ -1,0 +1,54 @@
+﻿@using System.Web.Http
+@using System.Web.Http.Controllers
+@using System.Web.Http.Description
+@using System.Collections.ObjectModel
+@using ApiVersion.Areas.HelpPage.Models
+@model Collection<ApiDescription>
+
+@{
+    ViewBag.Title = "ASP.NET Web API 接口描述文档";
+
+    // Group APIs by controller
+    ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = Model.ToLookup(api => api.ActionDescriptor.ControllerDescriptor);
+}
+
+<link type="text/css" href="~/Areas/HelpPage/HelpPage.css" rel="stylesheet" />
+<header class="help-page">
+    <div class="content-wrapper">
+        <div class="float-left">
+            <h1>@ViewBag.Title</h1>
+        </div>
+    </div>
+</header>
+<div id="body" class="help-page">
+    <section class="featured">
+        <div class="content-wrapper">
+            <h2>Introduction</h2>
+            <p>
+                数据 APIs 接口描述
+            </p>
+            <div>               
+                调用说明
+                <br />&nbsp;&nbsp;&nbsp;&nbsp;所有接口返回类型为JSON，UTF-8 编码。
+                <br />版本说明
+                <br />&nbsp;&nbsp;版本控制使用自定义的 Request Header 或 URL如：
+                <p style="padding-left:20px;">
+                    Request Header 
+                    <br />HTTP GET/POST:  
+                    <br />http://api.test.com/controller/action  
+                    <br />Header version: v1
+                    <br />
+                    <br />URL
+                    <br />HTTP GET/POST:  
+                    <br />http://api.test.com/v1/controller/action   
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="content-wrapper main-content clear-fix">
+        @foreach (var group in apiGroups)
+        {
+            @Html.DisplayFor(m => group, "ApiGroup")
+        }
+    </section>
+</div>

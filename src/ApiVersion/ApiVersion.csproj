@@ -33,6 +33,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\ApiVersion.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -80,6 +81,12 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -89,6 +96,14 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -121,12 +136,102 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\V1_1_0\Controllers\DefaultController.cs" />
+    <Compile Include="Api\_ApiCode.cs" />
     <Compile Include="Api\_BaseModel.cs" />
     <Compile Include="Api\_ApiResult.cs" />
     <Compile Include="Api\_ApiAttribute.cs" />
     <Compile Include="Api\_BaseController.cs" />
     <Compile Include="Api\_ControllerTypeDictionarys.cs" />
+    <Compile Include="Api\_VersionActionSelectorAttribute.cs" />
     <Compile Include="Api\_VersionControllerFactory.cs" />
+    <Content Include="Areas\HelpPage\Content\bootstrap.css" />
+    <Content Include="Areas\HelpPage\Content\bootstrap.min.css" />
+    <Content Include="Areas\HelpPage\Content\Site.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\jquery-ui.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\jquery.ui.menu.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\jquery.ui.spinner.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\jquery.ui.tooltip.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\jquery.ui.menu.min.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\jquery.ui.spinner.min.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Areas\HelpPage\Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Areas\HelpPage\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Areas\HelpPage\Scripts\ai.0.22.9-build00167.js" />
+    <Content Include="Areas\HelpPage\Scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Areas\HelpPage\Scripts\bootstrap.js" />
+    <Content Include="Areas\HelpPage\Scripts\bootstrap.min.js" />
+    <None Include="Areas\HelpPage\Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Areas\HelpPage\Scripts\jquery-1.10.2.js" />
+    <Content Include="Areas\HelpPage\Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Areas\HelpPage\Scripts\jquery-ui-1.9.2.js" />
+    <Content Include="Areas\HelpPage\Scripts\jquery-ui-1.9.2.min.js" />
+    <None Include="Areas\HelpPage\Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Areas\HelpPage\Scripts\jquery.validate.js" />
+    <Content Include="Areas\HelpPage\Scripts\jquery.validate.min.js" />
+    <Content Include="Areas\HelpPage\Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Areas\HelpPage\Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Areas\HelpPage\Scripts\knockout-2.2.0.debug.js" />
+    <Content Include="Areas\HelpPage\Scripts\knockout-2.2.0.js" />
+    <Content Include="Areas\HelpPage\Scripts\modernizr-2.6.2.js" />
+    <Content Include="Areas\HelpPage\Scripts\respond.js" />
+    <Content Include="Areas\HelpPage\Scripts\respond.min.js" />
+    <Content Include="Areas\HelpPage\Scripts\WebApiTestClient.js" />
+    <None Include="Areas\HelpPage\Scripts\_references.js" />
+    <Content Include="Areas\HelpPage\TestClient.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -135,7 +240,36 @@
     <Compile Include="Api\Base\Models\ProductOutput.cs" />
     <Compile Include="Api\V1_0_0\Controllers\DefaultController.cs" />
     <Compile Include="Api\V1_0_0\Models\ProductOutput.cs" />
+    <Compile Include="App_Start\ApiConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
+    <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
+    <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageAreaRegistration.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageConfigurationExtensions.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\CollectionModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ComplexTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\DictionaryModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumValueDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\IModelDocumentationProvider.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\KeyValuePairModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescriptionGenerator.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameAttribute.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameHelper.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterAnnotation.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\SimpleTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\Models\HelpPageApiModel.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleKey.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ImageSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\InvalidSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ObjectGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
+    <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -146,6 +280,33 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Areas\HelpPage\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\HelpPage\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Areas\HelpPage\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\HelpPage\Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ComplexTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\DictionaryModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\EnumTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ImageSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\InvalidSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\KeyValuePairModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ModelDescriptionLink.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Parameters.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\SimpleTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TestClientDialogs.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TestClientReferences.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TextSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Shared\_Bootstrap.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Web.config" />
+    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
